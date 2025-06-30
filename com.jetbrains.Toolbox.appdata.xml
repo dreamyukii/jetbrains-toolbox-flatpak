@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.jetbrains.Toolbox</id>
+  <name>Jetbrains Toolbox</name>
+  <summary>Manage your JetBrains tools easily</summary>
+  <metadata_license>CC-BY-SA</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <description>
+    <p>
+      Manage your JetBrains tools easily
+    </p>
+    <p>
+      Install     Update automatically     Update the plugins together with IDE     Roll back and downgrade
+    </p>
+    <p>
+      Save time and effort maintaining your IDEs, by downloading a patch or a set of patches instead of the full package download. Everything updates in the background while you never stop coding.
+    </p>
+  </description>
+  <launchable type="desktop-id">com.jetbrains.Toolbox.desktop</launchable>
+</component>
