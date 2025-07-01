@@ -1,28 +1,28 @@
 id: com.jetbrains.Toolbox
 command: jetbrains-toolbox
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: "24.08"
 sdk: org.freedesktop.Sdk
 tags:
   - proprietary
+separate-locales: false
 finish-args:
   - --share=ipc
   - --share=network
   - --device=dri
   - --socket=x11
+  - --socket=ssh-auth
   - --share=network
   - --socket=session-bus
+  - --talk-name=org.freedesktop.secrets
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --talk-name=com.canonical.indicator.application 
-  - --talk-name=org.ayatana.indicator.application
-  - --filesystem=~/.local/share/applications
-
+  - --filesystem=home
 modules:
   - name: toolbox
     buildsystem: simple
     build-commands:
       - install -D apply_extra /app/bin/apply_extra
-      - install -Dm755 jetbrains-toolbox /app/bin/jetbrains-toolbox
+      - install -Dm755 jetbrains-toolbox.sh /app/bin/jetbrains-toolbox
       - install -D -m644 -t ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/ ${FLATPAK_ID}.svg
       - install -D -m644 -t ${FLATPAK_DEST}/share/applications/ ${FLATPAK_ID}.desktop
       - install -D -m644 -t ${FLATPAK_DEST}/share/metainfo/ ${FLATPAK_ID}.appdata.xml
@@ -32,7 +32,6 @@ modules:
         commands:
           - mkdir toolbox/
           - tar -xzf toolbox.tar.gz --directory=toolbox/ --strip-components=1
-          - rm toolbox/bin/jetbrains-toolbox.desktop
           - rm toolbox.tar.gz
       - type: file
         path: com.jetbrains.Toolbox.appdata.xml
@@ -41,7 +40,7 @@ modules:
       - type: file
         path: com.jetbrains.Toolbox.svg
       - type: file
-        path: jetbrains-toolbox
+        path: jetbrains-toolbox.sh
       - type: extra-data
         filename: toolbox.tar.gz
         sha256: 9f32748001fe6a9bf3db222e8caef47be2c63b2c307169811d2d403b38a3fb91
